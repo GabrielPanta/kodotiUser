@@ -1,0 +1,52 @@
+﻿<div class="container">
+    <header>
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="~/">
+                    <img src="~/images/logo.png" />
+                </a>
+            </div>
+
+            <a class="navbar-item" asp-controller="Home" asp-action="Index">Home</a>
+            <a class="navbar-item" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+            <div class="navbar-end">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            <span class="icon">
+                                <i class="fa fa-user"></i>
+                            </span>
+                            <span>@User.Identity.Name</span>
+                        </a>
+                        <div class="navbar-dropdown is-boxed">
+                            <a class="navbar-item" asp-controller="User" asp-action="Index">
+                                Mi información
+                            </a>
+                            <a asp-controller="Account" asp-action="Logout" class="navbar-item">
+                                <span class="icon">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </span>
+                                <span>Finalizar sesión</span>
+                            </a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a asp-controller="Account" asp-action="NewUser" class="button is-primary">
+                                <strong>Registrarse</strong>
+                            </a>
+                            <a asp-controller="Account" asp-action="Index" class="button is-light">
+                                Ingresar
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </nav>
+    </header>
+</div>
