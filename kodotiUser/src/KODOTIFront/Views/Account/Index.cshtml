@@ -1,12 +1,13 @@
 ﻿@model KODOTIFront.Models.UserLoginViewModel
 @{
-    ViewData["Title"] = "Nuevo usuario";
+    ViewData["Title"] = "Autenticación";
 }
 
 <h1 class="title">@ViewData["Title"]</h1>
-<h2 class="subtitle">Creación de usuarios</h2>
+<h2 class="subtitle">Bienvenido al sistema</h2>
 
-<form asp-controller="Account" asp-action="Create">
+<form asp-controller="Account" asp-action="Login" method="post">
+    <input type="hidden" name="returnUrl" value="@ViewData["returnUrl"]" />
     <div class="field">
         <label class="label">Email</label>
         <div class="control has-icons-left has-icons-right">
@@ -27,12 +28,21 @@
         </div>
     </div>
 
+    <div class="field">
+        <div class="control">
+            <label class="checkbox">
+                <input asp-for="RememberMe" type="checkbox"> Recordar mi sesión en este equipo
+            </label>
+        </div>
+    </div>
+
     <div class="field is-grouped">
         <div class="control">
-            <button type="submit" class="button is-link">Registrar</button>
+            <button type="submit" class="button is-link">Ingresar</button>
         </div>
         <div class="control">
-            <a href="~/" class="button is-text">Cancelar</a>
+            <a asp-controller="Account" asp-action="NewUser" class="button is-text">Nuevo usuario</a>
         </div>
     </div>
 </form>
+
