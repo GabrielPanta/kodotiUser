@@ -1,0 +1,38 @@
+﻿@model KODOTIFront.Models.NewUserViewModel
+@{
+    ViewData["Title"] = "Nuevo usuario";
+}
+
+<h1 class="title">@ViewData["Title"]</h1>
+<h2 class="subtitle">Creación de usuarios</h2>
+
+<form asp-controller="Account" asp-action="Create">
+    <div class="field">
+        <label class="label">Email</label>
+        <div class="control has-icons-left has-icons-right">
+            <input asp-for="Email" class="input" type="email" placeholder="Correo electrónico" required>
+            <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Contraseña</label>
+        <div class="control has-icons-left has-icons-right">
+            <input asp-for="Password" class="input" type="password" placeholder="Password" required>
+            <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="field is-grouped">
+        <div class="control">
+            <button type="submit" class="button is-link">Registrar</button>
+        </div>
+        <div class="control">
+            <a href="~/" class="button is-text">Cancelar</a>
+        </div>
+    </div>
+</form>

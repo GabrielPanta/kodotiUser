@@ -62,7 +62,7 @@ namespace KODOTIFront
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            app.UseAuthentication();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
