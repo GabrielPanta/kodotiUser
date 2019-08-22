@@ -1,4 +1,5 @@
-﻿using DomainLayer.Identity;
+﻿using DomainLayer;
+using DomainLayer.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,6 +16,10 @@ namespace PersistenceLayer
             ChangeTracker.LazyLoadingEnabled = true;
         }
 
+        public DbSet<Artist> Artists { get; set; }
+        public DbSet<Album> albums { get; set; }
+        public DbSet<Song> Songs { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -25,6 +30,9 @@ namespace PersistenceLayer
         private void ModelConfig(ModelBuilder modelBuilder)
         {
             new AplicationUserConfig(modelBuilder.Entity<ApplicationUser>());
+            new AplicationArtistConfig(modelBuilder.Entity<Artist>());
+            new AplicationAlbumConfig(modelBuilder.Entity<Album>());
+            new AplicationSongConfig(modelBuilder.Entity<Song>());
         }
     }
 }
