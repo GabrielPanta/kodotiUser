@@ -14,5 +14,17 @@ namespace PersistenceLayer
             ChangeTracker.AutoDetectChangesEnabled = false;
             ChangeTracker.LazyLoadingEnabled = true;
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            ModelConfig(builder);
+        }
+
+        private void ModelConfig(ModelBuilder modelBuilder)
+        {
+            new AplicationUserConfig(modelBuilder.Entity<ApplicationUser>());
+        }
     }
 }

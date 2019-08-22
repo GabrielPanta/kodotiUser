@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DomainLayer.Identity;
+using KODOTIFront.Config;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using PersistenceLayer;
+using ServiceLayer;
 
 namespace KODOTIFront
 {
@@ -44,6 +46,7 @@ namespace KODOTIFront
                 .AddEntityFrameworkStores<DataContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddTransient<IUserService, UserService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -53,6 +56,7 @@ namespace KODOTIFront
             IHostingEnvironment env,
             ILoggerFactory loggerFactory)
         {
+            AutoMapperConfig.Initialize();
             loggerFactory.AddFile(env.ContentRootPath+"/Logs/log-{Date}.txt");
             if (env.IsDevelopment())
             {
