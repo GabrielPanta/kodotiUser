@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Artistas ";
+}
+
+<h1 class="title">@ViewData["Title"]</h1>
+<h2 class="subtitle">Listado de Artistas</h2>
+<div class="field is-grouped">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="control">
+            <a asp-controller="Artist" asp-action="Create" class="button is-link">Nuevo Artista</a>
+        </div>
+    }
+
+</div>
+

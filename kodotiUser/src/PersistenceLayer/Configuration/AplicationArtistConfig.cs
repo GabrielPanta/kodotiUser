@@ -12,7 +12,7 @@ namespace PersistenceLayer
         public AplicationArtistConfig(EntityTypeBuilder<Artist> entityBuilder)
         {
             entityBuilder.Property(x => x.Name).HasMaxLength(100);
-            entityBuilder.Property(x => x.Description).HasMaxLength(500);
+            entityBuilder.Property(x => x.Description).HasMaxLength(1000);
             entityBuilder.Property(x => x.LogoUrl).HasMaxLength(100);
         }
     }

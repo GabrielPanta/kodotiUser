@@ -1,0 +1,35 @@
+﻿@model ArtistBaseDto
+@{
+    ViewData["Title"] = "Nuevo Artista";
+}
+
+<h1 class="title">@ViewData["Title"]</h1>
+<h3 class="subtitle">Formulario de creación de Atistas</h3>
+<form asp-controller="Artist" asp-action="Create" method="post">
+
+    <div class="field">
+        <label class="label">Artista</label>
+        <div class="control">
+            <input asp-for="Name" class="input" type="text" placeholder="Nombre"/>
+            <span asp-validation-for="Name" class="has-text-danger"></span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Descripción</label>
+        <div class="control">
+            <textarea required asp-for="Description" class="textarea" placeholder="Descripcion"></textarea>
+            <span asp-validation-for="Description" class="has-text-danger"></span>
+        </div>
+    </div>
+
+    <div class="field is-grouped">
+        <div class="control">
+            <button type="submit" class="button is-link">Guardar</button>
+        </div>
+        <div class="control">
+            <a asp-controller="Artist" asp-action="Index" class="button is-text">Volver</a>
+        </div>
+    </div>
+</form>
+
