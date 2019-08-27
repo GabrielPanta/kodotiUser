@@ -1,17 +1,78 @@
-﻿
+﻿@model DataCollection<ArtistDto>
 @{
     ViewData["Title"] = "Artistas ";
+    int page = Convert.ToInt32(ViewData["page"]);
 }
 
 <h1 class="title">@ViewData["Title"]</h1>
 <h2 class="subtitle">Listado de Artistas</h2>
-<div class="field is-grouped">
-    @if (User.Identity.IsAuthenticated)
-    {
-        <div class="control">
-            <a asp-controller="Artist" asp-action="Create" class="button is-link">Nuevo Artista</a>
-        </div>
-    }
 
+<div class="field has-text-right">
+    <a asp-controller="Artist" asp-action="Create" class="button is-link">
+        <span>Nuevo Artista</span>
+        <span class="icon">
+            <i class="fas fa-user-plus"></i>
+        </span>
+    </a>
 </div>
+
+@if (Model.Items != null && Model.Items.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width:100px;"></th>
+                <th>Artista</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td><img src="~/images/logo.png" /></td>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                </tr>
+            }
+
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="3"class="has-text-centered">
+                    se han encontrado @Model.Total registro(s)
+                </td>
+            </tr>
+        </tfoot>
+
+    </table>
+
+    <div class="has-text-centered">
+        @if (page > 1)
+        {
+            <a href="/artist?p=@(page - 1) " class="button is-primary  is-medium">
+                <span class="icon">
+                    <i class="fas fa-angle-left"></i>
+                </span>
+                <span>Anterior</span>
+            </a>
+        }
+        @if (page < Model.Pages)
+        {
+            <a href="/artist?p=@(page + 1 ) " class="button is-primary is-medium">
+                <span>Siguiente</span>
+                <span class="icon">
+                    <i class="fas fa-angle-right"></i><i class="fas fa-angle-rigth"></i>
+                </span>
+            </a>
+        }
+    </div>
+}
+else
+{
+    <p>No se han encontrado Artistas</p>
+}
+
+
 

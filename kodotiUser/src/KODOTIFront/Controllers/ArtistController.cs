@@ -8,7 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using ServiceLayer;
 
 namespace KODOTIFront.Controllers
-{
+{ 
+    [Authorize]
     public class ArtistController : Controller
     {
         private readonly IArtistService _artistService;
@@ -18,18 +19,17 @@ namespace KODOTIFront.Controllers
             _artistService = artistService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int p=1)
         {
-            return View();
+            ViewData["page"] = p;
+            return View(
+                await _artistService.GetPaged(p)
+                );
         }
-
-        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
-
-        [Authorize]
         [HttpPost]
         public async Task <IActionResult> Create(ArtistCreateDto model)
         {

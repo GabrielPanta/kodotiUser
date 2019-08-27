@@ -10,7 +10,7 @@ namespace DtoLayer
         public int ArtistId { get; set; }
         [Required(ErrorMessage ="Campo requerido"),MinLength(5,ErrorMessage ="Mínimo 5 caracteres")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Campo requerido")]
+        [Required(ErrorMessage = "Campo requerido"),MaxLength(500,ErrorMessage ="Máximo 500 caracteres")]
         public string Description { get; set; }
     }
     public class ArtistDto:ArtistBaseDto
