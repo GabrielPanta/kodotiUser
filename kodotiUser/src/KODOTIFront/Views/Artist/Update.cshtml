@@ -1,0 +1,56 @@
+﻿@model ArtistDto
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h1 class="title">@ViewData["Title"]</h1>
+<h2 class="subtitle">Formulario de artista</h2>
+
+<div class="tabs">
+    <ul>
+        <li class="is-active"><a>Información básica</a></li>
+        <li><a href="~/artist/@Model.ArtistId/album">Álbum</a></li>
+    </ul>
+</div>
+
+<form asp-controller="Artist" asp-action="Update" method="post" enctype="multipart/form-data">
+    <div class="columns">
+        <div class="column">
+            <input asp-for="ArtistId" type="hidden" />
+            <partial name="_ArtistBasicInformation" />
+            <div class="field">
+                <div class="file">
+                    <label class="file-label">
+                        <input class="file-input" type="file" name="File">
+                        <span class="file-cta">
+                            <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label">
+                                Seleccione una imagen
+                            </span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="column is-4">
+            @if (!string.IsNullOrEmpty(Model.LogoUrl))
+            {
+                <figure class="image">
+                    <img src="~/uploads/@Model.LogoUrl" />
+                </figure>
+            }
+        </div>
+    </div>
+
+    <div class="field is-grouped">
+        <div class="control">
+            <button type="submit" class="button is-link">Guardar</button>
+        </div>
+        <div class="control">
+            <a asp-controller="Artist" asp-action="Index" class="button is-text">Volver</a>
+        </div>
+    </div>
+</form>
+

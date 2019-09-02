@@ -1,0 +1,18 @@
+﻿@model ArtistBaseDto
+
+<div class="field">
+    <label class="label">Artista</label>
+    <div class="control">
+        <input required asp-for="Name" class="input" type="text" placeholder="Nombre">
+        <span asp-validation-for="Name" class="help is-danger"></span>
+    </div>
+</div>
+
+<div class="field">
+    <label class="label">Descripción</label>
+    <div class="control">
+        <textarea required asp-for="Description" class="textarea" placeholder="Descripción"></textarea>
+        <span asp-validation-for="Description" class="help is-danger"></span>
+    </div>
+</div>
+

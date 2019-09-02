@@ -20,4 +20,8 @@ namespace DtoLayer
     public class ArtistCreateDto:ArtistBaseDto
     {
     }
+    public class ArtistUpdateDto : ArtistBaseDto
+    {
+
+    }
 }

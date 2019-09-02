@@ -30,8 +30,12 @@
             @foreach (var item in Model.Items)
             {
                 <tr>
-                    <td><img src="~/images/logo.png" /></td>
-                    <td>@item.Name</td>
+                    <td>
+                        <img src="~/uploads/@item.LogoUrl" />
+                    </td>
+                    <td>
+                        <a href="/artist/update/@item.ArtistId">@item.Name</a>
+                    </td>
                     <td>@item.Description</td>
                 </tr>
             }
