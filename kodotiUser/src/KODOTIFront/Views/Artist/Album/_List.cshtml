@@ -1,0 +1,16 @@
+﻿@model List<AlbumDto>
+
+@if (Model != null && Model.Any())
+{
+    @foreach (var item in Model)
+    {
+        <div class="box">
+            <h3 class="title is-size-5">@item.Name</h3>
+            <h4 class="subtitle is-size-6">Lanzado el @item.ReleaseDate</h4>
+        </div>
+    }
+}
+else
+{
+    <p>No se han registrado álbumes.</p>
+}

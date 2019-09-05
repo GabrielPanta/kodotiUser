@@ -13,6 +13,8 @@ namespace KODOTIFront.Config
                 cfg.CreateMap<ApplicationUser, UserGetDto>().ReverseMap();
                 cfg.CreateMap<ArtistCreateDto, Artist>();
                 cfg.CreateMap<ArtistUpdateDto, Artist>();
+                cfg.CreateMap<Album, AlbumDto>();
+                cfg.CreateMap<AlbumCreateDto, Album>();
             });
         }
     }

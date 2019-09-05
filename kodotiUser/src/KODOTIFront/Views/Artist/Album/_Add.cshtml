@@ -1,0 +1,26 @@
+﻿
+@model AlbumCreateDto
+
+<form asp-controller="Artist" asp-action="AddAlbum" method="post">
+    <input type="hidden" asp-for="@Model.ArtistId" />
+
+    <div class="field">
+        <label class="label">Nombre</label>
+        <div class="control">
+            <input required asp-for="Name" class="input" type="text" placeholder="Nombre">
+            <span asp-validation-for="Name" class="help is-danger"></span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Fecha</label>
+        <div class="control">
+            <input required asp-for="ReleaseDate" class="input" type="date" placeholder="Fecha de lanzamiento">
+            <span asp-validation-for="ReleaseDate" class="help is-danger"></span>
+        </div>
+    </div>
+
+    <div class="field is-grouped">
+        <button type="submit" class="button is-link">Guardar</button>
+    </div>
+</form>
