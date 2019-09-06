@@ -124,5 +124,12 @@ namespace KODOTIFront.Controllers
             // Especificamos la ruta de la vista manualmente
             return View("Album", resultViewModel);
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _artistService.Delete(id);
+
+            return RedirectToAction("Index");
+        }
     }
 }

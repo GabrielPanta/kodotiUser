@@ -21,6 +21,7 @@ namespace ServiceLayer
         Task<DataCollection<ArtistDto>> GetPaged(int page = 1);
         Task<ResponseHelper> Update(ArtistUpdateDto model, IFormFile file = null);
         Task<ArtistDto> Get(int id);
+        Task<ResponseHelper> Delete(int artistId);
     }
 
     public class ArtistService : IArtistService
@@ -28,6 +29,7 @@ namespace ServiceLayer
         private readonly DataContext _context;
         private readonly ILogger _logger;
         private readonly IHostingEnvironment _hostingEnvironment;
+
 
         public ArtistService(
             DataContext context,
@@ -135,6 +137,29 @@ namespace ServiceLayer
                 result = Mapper.Map<ArtistDto>(
                     await _context.Artists.SingleAsync(x => x.ArtistId == id)
                 );
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+            }
+
+            return result;
+        }
+
+        public async Task<ResponseHelper> Delete(int artistId)
+        {
+            var result = new ResponseHelper();
+
+            try
+            {
+                _context.Remove(new Artist
+                {
+                    ArtistId = artistId
+                });
+
+                await _context.SaveChangesAsync();
+
+                result.IsSuccess = true;
             }
             catch (Exception ex)
             {

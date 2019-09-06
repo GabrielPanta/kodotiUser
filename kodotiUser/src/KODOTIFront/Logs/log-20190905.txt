@@ -31,3 +31,5 @@ System.InvalidOperationException: The partial view 'album/_List' was not found. 
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
 2019-09-05T00:13:20.0000468-05:00 8000003e-0001-fd00-b63f-84710c7967bb [INF] Runnig HomeController:Index... (c7a6da39)
+2019-09-05T23:18:23.0982108-05:00 80000059-0001-fd00-b63f-84710c7967bb [INF] Runnig HomeController:Index... (c7a6da39)
+2019-09-05T23:20:43.6953642-05:00 80000054-0000-fb00-b63f-84710c7967bb [INF] Runnig HomeController:Index... (c7a6da39)

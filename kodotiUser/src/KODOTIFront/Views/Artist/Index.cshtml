@@ -29,15 +29,18 @@
         <tbody>
             @foreach (var item in Model.Items)
             {
-                <tr>
-                    <td>
-                        <img src="~/uploads/@item.LogoUrl" />
-                    </td>
-                    <td>
-                        <a href="/artist/update/@item.ArtistId">@item.Name</a>
-                    </td>
-                    <td>@item.Description</td>
-                </tr>
+            <tr>
+                <td>
+                    <img src="~/uploads/@item.LogoUrl" />
+                </td>
+                <td>
+                    <a href="/artist/update/@item.ArtistId">@item.Name</a>
+                </td>
+                <td>@item.Description</td>
+                <td>
+                    <a class="has-text-danger" onclick="return confirm('¿Esta seguro?')" href="/artist/delete/@item.ArtistId">Eliminar</a>
+                </td>
+            </tr>
             }
 
         </tbody>
