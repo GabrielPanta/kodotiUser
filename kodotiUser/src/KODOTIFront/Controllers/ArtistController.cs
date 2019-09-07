@@ -16,14 +16,17 @@ namespace KODOTIFront.Controllers
     {
         private readonly IArtistService _artistService;
         private readonly IAlbumService _albumService;
+        private readonly ISongService _songService;
 
         public ArtistController(
             IArtistService artistService,
-            IAlbumService albumService
+            IAlbumService albumService,
+            ISongService songService
             )
         {
             _artistService = artistService;
             _albumService = albumService;
+            _songService = songService;
         }
 
         public async Task<IActionResult> Index(int p=1)
@@ -125,6 +128,39 @@ namespace KODOTIFront.Controllers
             return View("Album", resultViewModel);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AddSong(SongCreateDto model, int artistId)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _songService.Create(model);
+
+                if (result.IsSuccess)
+                {
+                    return RedirectToAction("Album", new { artistId });
+                }
+
+                throw new Exception("No se pudo registrar el álbum");
+            }
+            else
+            {
+                ModelState.AddModelError("SongCreation", "No se pudo registrar la canción.");
+            }
+
+            // Volvemos a pasar el modelo en caso falle para que cargue la data de nuevo
+            var artist = await _artistService.Get(artistId);
+            var albums = await _albumService.GetAllByArtist(artistId);
+
+            var resultViewModel = new AlbumViewModel
+            {
+                ArtistId = artist.ArtistId,
+                ArtistName = artist.Name,
+                Albums = albums
+            };
+
+            // Especificamos la ruta de la vista manualmente
+            return View("Album", resultViewModel);
+        }
         public async Task<IActionResult> Delete(int id)
         {
             await _artistService.Delete(id);

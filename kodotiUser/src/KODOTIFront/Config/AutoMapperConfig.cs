@@ -15,6 +15,7 @@ namespace KODOTIFront.Config
                 cfg.CreateMap<ArtistUpdateDto, Artist>();
                 cfg.CreateMap<Album, AlbumDto>();
                 cfg.CreateMap<AlbumCreateDto, Album>();
+                cfg.CreateMap<SongCreateDto, Song>();
             });
         }
     }

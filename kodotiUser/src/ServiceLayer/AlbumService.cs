@@ -61,7 +61,7 @@ namespace ServiceLayer
 
             try
             {
-                var records = await _context.Albums
+                var records = await _context.Albums.Include(x => x.Songs)
                                                    .Where(x => x.ArtistId == artistId)
                                                    .ToListAsync();
 

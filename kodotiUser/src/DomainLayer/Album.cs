@@ -9,6 +9,7 @@ namespace DomainLayer
         public int AlbumId { get; set; }
         public Artist Artist { get; set; }
         public int ArtistId { get; set; }
+        public List<Song> Songs { get; set; }
         public string Name { get; set; }
         public DateTime ReleaseDate { get; set; }
     }

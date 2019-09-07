@@ -1,0 +1,19 @@
+﻿@model SongCreateDto
+
+<input type="hidden" asp-for="@Model.AlbumId" />
+
+<div class="columns">
+    <div class="column">
+        <div class="control">
+            <input required asp-for="Name" class="input" type="text" placeholder="Nombre">
+        </div>
+    </div>
+    <div class="column">
+        <div class="control">
+            <input required asp-for="DurationTime" class="input" type="number" placeholder="Duración en segundos">
+        </div>
+    </div>
+    <div class="column is-2 has-text-right">
+        <button type="submit" class="button is-link is-fullwidth">Guardar</button>
+    </div>
+</div>

@@ -4,10 +4,33 @@
 {
     @foreach (var item in Model)
     {
-        <div class="box">
-            <h3 class="title is-size-5">@item.Name</h3>
-            <h4 class="subtitle is-size-6">Lanzado el @item.ReleaseDate</h4>
-        </div>
+    <div class="box">
+        <h3 class="title is-size-5">@item.Name</h3>
+        <h4 class="subtitle is-size-6">Lanzado el @item.ReleaseDate</h4>
+
+        <hr />
+
+
+        @if (item.Songs != null && item.Songs.Any())
+        {
+            <table class="table" style="width:100%;">
+                <tbody>
+                    @foreach (var song in item.Songs)
+                    {
+                        <tr>
+                            <td>@song.Name</td>
+                            <td style="width:100px;">@song.DurationTime</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+        <form asp-controller="Artist" asp-action="AddSong" method="post">
+            <input type="hidden" name="artistId" value="@item.ArtistId" />
+            <partial name="Album/_AddSong" model="@(new SongCreateDto { AlbumId = item.AlbumId })" />
+        </form>
+    </div>
     }
 }
 else

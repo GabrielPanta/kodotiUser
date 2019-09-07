@@ -49,6 +49,7 @@ namespace KODOTIFront
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IArtistService, ArtistService>();
             services.AddTransient<IAlbumService, AlbumService>();
+            services.AddTransient<ISongService, SongService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
